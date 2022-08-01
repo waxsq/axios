@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../public/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <button>发送GET请求</button>
+      <button>发送PSOT请求</button>
+      <button>发送PUT请求</button>
+      <button>发送DELETE请求</button>
+    </div>
+
+    <script>
+      const btns = document.querySelectorAll("button");
+
+      //查询
+      btns[0].onclick = () => {
+        axios({
+          method: "GET",
+          //默认为id为2
+          url: " http://localhost:3000/posts/2",
+        }).then(
+          (success) => {
+            console.log(success);
+          },
+          (reason) => {
+            console.log(reason);
+          }
+        );
+      };
+
+      //添加文章
+      btns[1].onclick = () => {
+        axios({
+          method: "POST",
+          url: "http://localhost:3000/posts",
+          //请求体
+          data: {
+            title: "牛逼",
+            author: "张三",
+          },
+        }).then((response) => {
+          console.log(response);
+        });
+      };
+
+      //put更新
+      btns[2].onclick = () => {
+        axios({
+          method: "PUT",
+          url: "http://localhost:3000/posts/4",
+          //请求体
+          data: {
+            author: "李四",
+            title: "变化",
+          },
+        }).then((response) => {
+          console.log(response);
+        });
+      };
+
+      //delete删除
+      btns[3].onclick = () => {
+        axios({
+          method: "delete",
+          url: "http://localhost:3000/posts/4"
+        }).then((response) => {
+          console.log(response);
+        });
+      };
+
+      
+    </script>
+  </body>
+</html>

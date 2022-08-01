@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../public/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <button>发送GET请求</button>
+      <button>发送PSOT请求</button>
+      <button>发送PUT请求</button>
+      <button>发送DELETE请求</button>
+    </div>
+
+    <script>
+      const btns = document.querySelectorAll("button");
+
+      /*
+        axios.request(config)
+        axios.get(url[, config])
+        axios.delete(url[, config])
+        axios.head(url[, config])
+        axios.options(url[, config])
+        axios.post(url[, data[, config]])
+        axios.put(url[, data[, config]])
+        axios.patch(url[, data[, config]])
+      */
+      btns[0].onclick = () => {
+        axios
+          .request({
+            method: "get",
+            url: "http://localhost:3000/comments",
+          })
+          .then(
+            (success) => {
+              console.log(success);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      };
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../public/axios.min.js"></script>
+  </head>
+  <body></body>
+  <script>
+    // Add a request interceptor
+    axios.interceptors.request.use(
+      function (config) {
+        // Do something before request is sent
+        console.log('request  拦截成功');
+        return config;
+      },
+      function (error) {
+        // Do something with request error
+        console.log('request  拦截失败');
+        return Promise.reject(error);
+      }
+    );
+
+    // Add a response interceptor
+    axios.interceptors.response.use(
+      function (response) {
+        // Any status code that lie within the range of 2xx cause this function to trigger
+        // Do something with response data
+        console.log('response  拦截成功');
+        return response;
+      },
+      function (error) {
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        // Do something with response error
+        console.log('response  拦截失败');
+        return Promise.reject(error);
+      }
+    );
+
+
+    //发送请求
+      axios({
+        method:'GET',
+        url:'http://localhost:3000/comments',
+      }).then(
+        success =>{
+            console.log(success);
+        }
+      )
+
+  </script>
+</html>

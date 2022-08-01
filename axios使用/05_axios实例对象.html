@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../public/axios.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button>发送GET请求</button>
+        <button>发送PSOT请求</button>
+        <button>发送delete</button>
+    </div>
+    <script>
+        const btns = document.querySelectorAll("button");
+
+        //创建axios实例
+        const axios_instance = axios.create({
+            baseURL : 'http://localhost:3000',
+            timeout:2000
+        })
+
+        //axios实例的功能和axios对象功能相近
+        btns[0].onclick = () =>{
+            axios_instance({
+                url:'posts'
+            }).then(
+                success =>{console.log(success)}
+            )
+        }
+        btns[1].onclick = () =>{
+            axios_instance({
+                method:'post',
+                url:'posts',
+                data:{
+                    'author':'la',
+                    title:'11111'
+                }
+            }).then(
+                success =>{console.log(success)}
+            )
+        }
+        btns[2].onclick = () =>{
+            axios_instance({
+                method:'delete',
+                url:'posts/4'
+            }).then(
+                success =>{console.log(success)}
+            )
+        }
+
+    </script>
+</body>
+</html>
